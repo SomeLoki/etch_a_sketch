@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100dvh;
+  width: 100dvw;
+
+}
+
+.header,
+.footer {
+  height: 100px;
+  background-color: rgb(29, 29, 118);
+}
+
+.container {
+  flex: auto;
+  background-color: rgb(112, 101, 101);
+  display: flex;
+  justify-content: center;
+}
+
+.sketchzone {
+  flex: auto;
+  max-width: 80dvw;
+  border: 1px solid black;
+  border-radius: 16px;
+  background-color: rgb(227, 219, 219);
+}
+
