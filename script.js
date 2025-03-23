@@ -1,13 +1,11 @@
 
 const header = document.querySelector(".header")
 const sketchArea = document.querySelector(".sketchzone");
-
 const rowNames = [];
 const columnNames = [];
 
-
 for (let i = 0; i < 100; ++i) {
-  rowNames[i] = ("Row" + `${i}`);
+  rowNames[i] = ("row" + `${i}`);
   columnNames[i] = ("Column" + `${i}`);
 }
 
@@ -52,7 +50,20 @@ const whichButton = function(){
   }
 }
 
-// helper functions in global scope
+// Add the stuff you see when the page starts
+
+createElement("button", "changeGrid", "Click to Change", header);
+createElement("button", "resetGrid", "Click to Reset", header);
+buildGrid(16);
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", whichButton);
+});
+
+buildGrid(16);
+
+// helper functions
 
 function setBoxSize(box, gridLayout) {
   const boxElem = document.querySelector(`.${box}`);
@@ -71,34 +82,31 @@ function clearSketchZone() {
   }
 }
 
-createElement("button", "changeGrid", "Click to Change", header);
-createElement("button", "resetGrid", "Click to Reset", header);
-buildGrid(16);
-const buttons = document.querySelectorAll("button");
-
-buttons.forEach((button) => {
-  button.addEventListener("click", whichButton);
-});
-
 function makeInteractive () {
-const boxes = sketchArea.querySelectorAll("div");
-
-boxes.forEach((box) => {
-  box.addEventListener("mouseover", () => {
-    box.style.backgroundColor = "rgb( 0, 0, 0)";
+  const boxes = sketchArea.querySelectorAll("div");
+  boxes.forEach((box) => {
+    box.addEventListener("mouseover", () => {
+      const r = (Math.floor(Math.random() * 256));
+      const g = (Math.floor(Math.random() * 256));
+      const b = (Math.floor(Math.random() * 256));
+      const opacity = box.style.opacity;
+      const bgColor = box.style.backgroundColor;
+      if (bgColor === "") {
+        box.style.backgroundColor = `rgb( ${r}, ${g}, ${b})`;
+        box.style.opacity = 1;
+        box.style.border = "1px solid black";
+      } else {
+        box.style.opacity = (Number(opacity) - 0.1);
+      };
+    });
   });
-});
 }
 
 function resetGrid () {
-  const boxes = sketchArea.querySelectorAll("div");
-  
+  const boxes = sketchArea.querySelectorAll("div");  
   boxes.forEach((box) => {
-      box.style.backgroundColor = "rgb(255, 255, 255)";
+      box.style.backgroundColor = "";
+      box.style.opacity = 1;
   });
-  }
-  
-
-
-// still need to add the event listeners for actually monitoring mouse movement / boxes and applying coloring.
+}
 
