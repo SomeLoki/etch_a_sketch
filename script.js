@@ -35,7 +35,7 @@ const buildGrid = function(sideCount) {
     }
     rows++;
   }
-  test();
+  makeInteractive();
 }
 
 const whichButton = function(){
@@ -48,7 +48,7 @@ const whichButton = function(){
     }
     buildGrid(boxCount);
   } else if (this.classList == "resetGrid"){
-    buildGrid(16);
+    resetGrid();
   }
 }
 
@@ -80,7 +80,7 @@ buttons.forEach((button) => {
   button.addEventListener("click", whichButton);
 });
 
-function test () {
+function makeInteractive () {
 const boxes = sketchArea.querySelectorAll("div");
 
 boxes.forEach((box) => {
@@ -90,7 +90,14 @@ boxes.forEach((box) => {
 });
 }
 
-
+function resetGrid () {
+  const boxes = sketchArea.querySelectorAll("div");
+  
+  boxes.forEach((box) => {
+      box.style.backgroundColor = "rgb(255, 255, 255)";
+  });
+  }
+  
 
 
 // still need to add the event listeners for actually monitoring mouse movement / boxes and applying coloring.
