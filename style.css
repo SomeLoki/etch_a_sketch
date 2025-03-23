@@ -19,6 +19,21 @@ body {
   background-color: rgb(29, 29, 118);
 }
 
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+button {
+  font-size: 32px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 2px solid black;
+  font-weight: 700;
+}
+
 .container {
   flex: auto;
   background-color: rgb(112, 101, 101);
@@ -32,5 +47,14 @@ body {
   border: 1px solid black;
   border-radius: 16px;
   background-color: rgb(227, 219, 219);
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  flex-wrap: wrap;
+}
+
+.sketchzone > div {
+  flex: 0 0 auto;
+  border: 1px solid black;
 }
 
