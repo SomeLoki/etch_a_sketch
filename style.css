@@ -48,13 +48,13 @@ button {
   border-radius: 16px;
   background-color: rgb(227, 219, 219);
   display: flex;
-  justify-content: center;
-  justify-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 
 .sketchzone > div {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   border: 1px solid black;
 }
 

@@ -1,9 +1,7 @@
 // start with 16 boxes arranged in 4x4 grid
 
-// have button that when pressed accepts a number from the user and translates to new total boxes
 const footer = document.querySelector(".footer")
 const sketchArea = document.querySelector(".sketchzone");
-console.log(sketchArea);
 
 const rowNames = [];
 const columnNames = [];
@@ -24,23 +22,25 @@ const createElement = function(elem, addClass, textContent, appendTo) {
 
 }
 
+// need to add clearing old boxes
 const startBoxBuilding = function(boxCount) {
   const gridLayout = perfectSquare(boxCount);
   let columns = 0;
   let rows = 0;
   let i = 0;
+  const rowDiff = Math.ceil(boxCount / gridLayout);
+  console.log(rowDiff);
+  clearSketchZone()
     for (rows; ( (rows <= gridLayout) && (i < boxCount)) ;) {
       columns = 0;
-      for (columns; columns < gridLayout; columns++) {
+      for (columns; ((columns < gridLayout) && (i <boxCount)) ; columns++) {
         const boxClass = (rowNames[rows] + columnNames[columns]);
         createElement("div", boxClass,"", sketchArea)
-        setBoxSize(boxClass, gridLayout);
+        setBoxSize(boxClass, gridLayout, rowDiff);
         i++
       }
       rows++;
     }
-
-// createElement("div", boxClasses, "". sketchArea)
 }
 
 function test(i, row, col){
@@ -74,12 +74,14 @@ function perfectSquare(num) {
 }
 
  function validateNum(num) {
-  if ((Number.isInteger(num) === true) && ((num > 0) && num <=100)) {
-    return true;
-  }
-  return false;
-}
+  return ((Number.isInteger(num) === true) && ((num > 0) && num <=100));
+ } 
 
+function clearSketchZone() {
+  while (sketchArea.lastElementChild) {
+    sketchArea.removeChild(sketchArea.lastElementChild);
+  }
+}
 
 createElement("button", "changeGrid", "Click to Change", footer);
 createElement("button", "resetGrid", "Click to Reset", footer);
@@ -90,21 +92,13 @@ buttons.forEach((button) => {
 });
 
 
-
-// find equal or highest perfect square to know what sort of grid to form
-
-// divide current content box width / height. Whichever is lower set as both width and height of boxes - they must be square
-function setBoxSize(box, boxCount) {
-  console.log(box);
+function setBoxSize(box, gridLayout, rowDiff) {
 const boxElem = document.querySelector(`.${box}`);
-console.log(boxElem);
-const size = (100 / boxCount);
-boxElem.style.height = (`${size}%`);
-
-boxElem.style.width = (`${size}%`);
+const colSize = (100 / gridLayout);
+const rowSize  = (100 / rowDiff);
+boxElem.style.height = (`${rowSize}%`);
+boxElem.style.width = (`${colSize}%`);
 }
-// generate boxes through iterative loops. Will need a counter for box number, increment row. class will have to be generated and tied to boxes so need the numbers
 
-
-// to use naming boxes 1-100
+// still need to add the event listeners for actually monitoring mouse movement / boxes and applying coloring.
 
