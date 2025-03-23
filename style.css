@@ -19,7 +19,7 @@ body {
   background-color: rgb(29, 29, 118);
 }
 
-.footer {
+.header {
   display: flex;
   justify-content: center;
   align-items: center;
